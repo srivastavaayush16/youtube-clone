@@ -17,8 +17,10 @@
 
 //upar wala same function but in another way (Promise wale type se)    
 const asyncHandler = (requestHandler) =>{
-    Promise.resolve(requestHandler(req, res, next))
-    .catch((err) => next(err))      //aga kuch error aata hai tab bhi woo aage ka kaam karne lag jayega
+    return (req, res, next)=>{
+        Promise.resolve(requestHandler(req, res, next))
+        .catch((err) => next(err))      //aga kuch error aata hai tab bhi woo aage ka kaam karne lag jayega
+    }
 }
 
 export {asyncHandler}
