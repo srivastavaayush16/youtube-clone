@@ -51,7 +51,7 @@ const userSchema = new Schema({
 //har bar encrypt ni krna , jab v password field bhejun tabhi encrypt krna(either first time or when modification)
 userSchema.pre("save", async function(next) {
     if(this.isModified("password")){
-        this.password = bcrypt.hash(this.password, 10)       //(kya encrypt krna h, or kitne round krna h)
+        this.password = await bcrypt.hash(this.password, 10)       //(kya encrypt krna h, or kitne round krna h)
         next()
     }    
 })
